@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Fruits</title>
+</head>
+<body>
+    <h1>Liste des Fruits</h1>
+    <ul id="fruits-list">
+    </ul>
+</body>
+    <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        let token = localStorage.getItem('token');
+        
+        try {
+            let response = await fetch('http://127.0.0.1:4200/api/v1/fruit', {
+                headers: {
+                   Authorization: `Bearer ${token}`
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('Erreur lors de la récupération des données');
+            }
+            
+            let fruitsList = await response.json();
+            
+            let fruitsContainer = document.getElementById('fruits-list');
+            for (let fruit of fruitsList) {
+                let fruitItem = document.createElement('li');
+                fruitItem.textContent = `Fruits: ${fruit.nom}, Description: ${fruit.poids} grams, ${fruit.couleur?"couleur: " + fruit.couleur:""}`;
+                fruitsContainer.appendChild(fruitItem);
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+        }
+    });
+    </script>
+</html>
