@@ -22,12 +22,12 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 
 
 app.get('/', (req, res) => {
-  res.send('Bonjour monde !');
+  res.redirect("/blabla.html");
 });
 
 app.use("/api/v1", routerV1)
 
-const port = process.env.SERVER_PORT || 4200
+const port = process.env.PORT || 4200
 app.listen(port, () => {
   console.log(`Serveur démarré sur le port ${port}`);
 });
