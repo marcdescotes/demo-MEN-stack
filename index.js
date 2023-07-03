@@ -9,6 +9,7 @@ const routerV1 = require("./routers/apiV1Router.js")
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 
 // Connection à MongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
