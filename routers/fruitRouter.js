@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const FruitCtrl = require("../controllers/Fruits.js")
-
+const auth = require("../middleware/authenticator.js")
 
 
 // Définition des routes
-router.post('/', FruitCtrl.saveFruitInstance);
-router.get('/', FruitCtrl.getFruitCollection);
-router.get('/poids/:value', FruitCtrl.findFruitByPoids);
+router.post('/', auth, FruitCtrl.saveFruitInstance);
+router.get('/', auth, FruitCtrl.getFruitCollection);
+router.get('/poids/:value', auth, FruitCtrl.findFruitByPoids);
 
 // Exportation du routeur
 module.exports = router;
