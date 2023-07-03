@@ -1,10 +1,10 @@
 const express = require('express');
-const routerFruit = require("./fruitRouter")
+const routerFruit = require('./fruitRouter');
+const userRouter = require('./routerUser');
 
 const router = express.Router();
-// Définition des routes
+
 router.use('/fruit', routerFruit);
+router.use('/auth', userRouter);
 
-
-// Exportation du routeur
 module.exports = router;
